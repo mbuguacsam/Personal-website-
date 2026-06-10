@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samson C. Mbugua — Business Systems Builder, Nairobi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#09090E;
+  --surface:#111118;
+  --surface-2:#1A1A26;
+  --gold:#C8944A;
+  --gold-light:#E2B472;
+  --gold-muted:rgba(200,148,74,0.10);
+  --gold-border:rgba(200,148,74,0.20);
+  --cream:#F0EAE0;
+  --cream-2:#A89F94;
+  --cream-3:#5E5A56;
+  --wa:#25D366;
+  --wa-dark:#1aad54;
+  --red:#E05252;
+  --border-white:rgba(255,255,255,0.07);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--cream);line-height:1.65;font-size:16px;overflow-x:hidden;}
+
+/* ─── NAV ─── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(9,9,14,0.90);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border-white);
+  padding:0 6%;
+  display:flex;align-items:center;justify-content:space-between;
+  height:66px;
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--cream);letter-spacing:0.01em;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:0.85rem;color:var(--cream-2);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--cream);}
+.nav-cta{
+  display:flex;align-items:center;gap:8px;
+  background:var(--wa);color:#fff;
+  padding:9px 20px;border-radius:8px;
+  font-size:0.84rem;font-weight:500;
+  text-decoration:none;transition:background 0.2s;
+  white-space:nowrap;
+}
+.nav-cta:hover{background:var(--wa-dark);}
+
+/* ─── HELPERS ─── */
+.container{max-width:1060px;margin:0 auto;}
+section{padding:86px 6%;}
+.section-label{
+  font-size:0.70rem;font-weight:600;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:1rem;
+}
+.wa-icon{display:inline-block;vertical-align:middle;}
+
+/* ─── HERO ─── */
+.hero{padding:108px 6% 86px;position:relative;overflow:hidden;}
+.hero::before{
+  content:'';position:absolute;top:-280px;right:-180px;
+  width:640px;height:640px;
+  background:radial-gradient(circle,rgba(200,148,74,0.07) 0%,transparent 68%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-120px;left:-100px;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(37,211,102,0.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{max-width:780px;position:relative;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--gold-muted);
+  border:1px solid var(--gold-border);
+  padding:7px 16px;border-radius:40px;
+  font-size:0.78rem;color:var(--gold-light);
+  margin-bottom:2.2rem;
+  animation:fadeUp 0.7s ease both;
+}
+.live-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--wa);
+  animation:pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.45;transform:scale(0.85);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.5rem,5.2vw,4rem);
+  line-height:1.13;font-weight:700;
+  margin-bottom:1.5rem;
+  animation:fadeUp 0.7s 0.1s ease both;
+}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{
+  font-size:1.07rem;color:var(--cream-2);
+  max-width:540px;margin-bottom:2.6rem;line-height:1.75;
+  animation:fadeUp 0.7s 0.2s ease both;
+  font-weight:300;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp 0.7s 0.3s ease both;}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--wa);color:#fff;
+  padding:14px 28px;border-radius:10px;
+  font-size:0.97rem;font-weight:500;
+  text-decoration:none;
+  transition:background 0.2s,transform 0.15s;
+}
+.btn-wa:hover{background:var(--wa-dark);transform:translateY(-2px);}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:9px;
+  background:transparent;color:var(--cream);
+  padding:14px 28px;border-radius:10px;
+  font-size:0.97rem;font-weight:400;
+  text-decoration:none;
+  border:1px solid var(--border-white);
+  transition:border-color 0.2s,color 0.2s;
+}
+.btn-outline:hover{border-color:var(--gold-border);color:var(--gold-light);}
+
+/* ─── STATS ─── */
+.stats-bar{
+  padding:44px 6%;
+  border-top:1px solid var(--border-white);
+  border-bottom:1px solid var(--border-white);
+}
+.stats-grid{
+  max-width:1060px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+}
+.stat{text-align:center;padding:8px 0;}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;font-weight:700;
+  color:var(--gold);display:block;line-height:1;
+}
+.stat-label{font-size:0.82rem;color:var(--cream-2);margin-top:7px;display:block;}
+
+/* ─── PAIN POINTS ─── */
+.pain{background:var(--surface);}
+.pain-intro{max-width:600px;margin-bottom:3rem;}
+.pain-intro h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);
+  line-height:1.2;margin-top:0.6rem;
+}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+.pain-card{
+  background:var(--bg);
+  border:1px solid var(--border-white);
+  border-radius:12px;padding:26px;
+  position:relative;overflow:hidden;
+  transition:border-color 0.2s;
+}
+.pain-card:hover{border-color:rgba(224,82,82,0.3);}
+.pain-card::before{
+  content:'';position:absolute;
+  top:0;left:0;width:3px;height:100%;
+  background:var(--red);border-radius:3px 0 0 3px;
+}
+.pain-icon{font-size:1.5rem;margin-bottom:14px;display:block;}
+.pain-title{font-size:0.97rem;font-weight:500;color:var(--cream);margin-bottom:7px;}
+.pain-desc{font-size:0.85rem;color:var(--cream-2);line-height:1.65;}
+
+/* ─── SERVICES ─── */
+.services-header{max-width:660px;margin-bottom:3rem;}
+.services-header h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.9rem,3.5vw,2.7rem);line-height:1.2;margin-top:0.6rem;
+}
+.services-header p{font-size:0.9rem;color:var(--cream-2);margin-top:0.8rem;line-height:1.7;}
+.services-grid{display:grid;gap:18px;}
+
+.svc{
+  background:var(--surface);
+  border:1px solid var(--border-white);
+  border-radius:16px;padding:32px 36px;
+  display:grid;
+  grid-template-columns:1fr 180px;
+  gap:20px 32px;
+  align-items:start;
+  position:relative;overflow:hidden;
+  transition:border-color 0.25s,transform 0.2s;
+}
+.svc:hover{border-color:var(--gold-border);transform:translateY(-2px);}
+.svc.featured{background:var(--surface-2);border-color:var(--gold-border);}
+.svc-watermark{
+  position:absolute;top:-8px;right:28px;
+  font-family:'Playfair Display',serif;
+  font-size:6rem;font-weight:700;
+  color:rgba(200,148,74,0.05);
+  line-height:1;pointer-events:none;user-select:none;
+}
+.svc-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--gold-muted);color:var(--gold);
+  border:1px solid var(--gold-border);
+  padding:4px 12px;border-radius:20px;
+  font-size:0.70rem;font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.svc-problem{
+  font-size:0.72rem;font-weight:600;
+  color:var(--red);text-transform:uppercase;
+  letter-spacing:0.10em;margin-bottom:9px;
+}
+.svc-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.42rem;font-weight:600;
+  line-height:1.25;margin-bottom:11px;color:var(--cream);
+}
+.svc-desc{font-size:0.87rem;color:var(--cream-2);line-height:1.7;margin-bottom:18px;}
+.svc-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px;}
+.svc-tag{
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border-white);
+  padding:4px 12px;border-radius:6px;
+  font-size:0.76rem;color:var(--cream-2);
+}
+.svc-divider{
+  border:none;border-top:1px solid var(--border-white);
+  margin-bottom:20px;
+}
+.svc-price-label{font-size:0.70rem;color:var(--cream-3);display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.08em;}
+.svc-price-amount{
+  font-family:'Playfair Display',serif;
+  font-size:1.55rem;color:var(--gold);font-weight:600;
+}
+.svc-price-period{font-size:0.78rem;color:var(--cream-3);}
+
+.svc-right{
+  display:flex;flex-direction:column;
+  align-items:flex-end;justify-content:space-between;
+  padding-top:4px;
+}
+.svc-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--wa);color:#fff;
+  padding:11px 22px;border-radius:9px;
+  font-size:0.84rem;font-weight:500;
+  text-decoration:none;white-space:nowrap;
+  transition:background 0.2s,transform 0.15s;
+  margin-bottom:auto;
+}
+.svc-cta:hover{background:var(--wa-dark);transform:translateY(-1px);}
+.svc-timeline{
+  font-size:0.75rem;color:var(--cream-3);
+  margin-top:14px;text-align:right;
+  line-height:1.5;
+}
+
+/* ─── QUICK WINS ─── */
+.quick{background:var(--surface);}
+.quick-intro{margin-bottom:2.4rem;}
+.quick-intro h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);margin-top:0.5rem;}
+.quick-intro p{font-size:0.87rem;color:var(--cream-2);margin-top:0.5rem;}
+.quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:2rem;}
+.quick-card{
+  background:var(--bg);
+  border:1px solid var(--border-white);
+  border-radius:11px;padding:22px;
+  transition:border-color 0.2s;
+}
+.quick-card:hover{border-color:var(--gold-border);}
+.quick-name{font-size:0.93rem;font-weight:500;margin-bottom:7px;}
+.quick-desc{font-size:0.80rem;color:var(--cream-2);line-height:1.6;margin-bottom:14px;}
+.quick-price{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--gold);}
+.quick-cta{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:0.78rem;color:var(--cream-2);text-decoration:none;
+  margin-top:12px;transition:color 0.2s;
+}
+.quick-cta:hover{color:var(--wa);}
+
+/* ─── CREDIBILITY ─── */
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:3rem;}
+.cred-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);line-height:1.22;margin-bottom:1.4rem;}
+.cred-text p{font-size:0.90rem;color:var(--cream-2);line-height:1.75;margin-bottom:1rem;}
+.cred-items{margin-top:1.8rem;display:flex;flex-direction:column;gap:14px;}
+.cred-item{display:flex;gap:14px;align-items:flex-start;}
+.cred-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:7px;flex-shrink:0;}
+.cred-item-strong{font-size:0.90rem;font-weight:500;color:var(--cream);margin-bottom:3px;}
+.cred-item-text{font-size:0.83rem;color:var(--cream-2);}
+.cred-cards{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.cred-card{
+  background:var(--surface);
+  border:1px solid var(--border-white);
+  border-radius:11px;padding:18px 20px;
+}
+.cred-card-title{font-size:0.90rem;font-weight:500;color:var(--cream);margin-bottom:4px;}
+.cred-card-sub{font-size:0.78rem;color:var(--cream-2);line-height:1.5;}
+
+/* ─── HOW IT WORKS ─── */
+.how{background:var(--surface);}
+.how-intro{margin-bottom:3rem;}
+.how-intro h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.4rem);line-height:1.2;margin-top:0.5rem;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;}
+.steps::before{
+  content:'';position:absolute;
+  top:42px;left:calc(33.33% + 24px);right:calc(33.33% + 24px);
+  height:1px;background:var(--gold-border);
+  pointer-events:none;
+}
+.step{padding:0 28px 0 0;position:relative;}
+.step:last-child{padding-right:0;}
+.step-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.6rem;color:var(--gold);
+  font-weight:700;line-height:1;margin-bottom:18px;display:block;
+}
+.step-name{font-size:1.02rem;font-weight:500;margin-bottom:9px;}
+.step-desc{font-size:0.85rem;color:var(--cream-2);line-height:1.7;}
+
+/* ─── FINAL CTA ─── */
+.final-cta{
+  text-align:center;
+  background:linear-gradient(160deg,rgba(200,148,74,0.05) 0%,transparent 55%);
+  border-top:1px solid var(--gold-border);
+}
+.final-cta h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4.5vw,3.2rem);
+  line-height:1.15;margin-bottom:1rem;
+}
+.final-cta p{
+  font-size:1.02rem;color:var(--cream-2);
+  max-width:480px;margin:0 auto 2.8rem;line-height:1.7;
+}
+.final-wa{
+  display:inline-flex;align-items:center;gap:11px;
+  background:var(--wa);color:#fff;
+  padding:17px 40px;border-radius:12px;
+  font-size:1.05rem;font-weight:500;
+  text-decoration:none;
+  transition:background 0.2s,transform 0.15s;
+}
+.final-wa:hover{background:var(--wa-dark);transform:translateY(-2px);}
+.final-note{
+  margin-top:1.8rem;
+  font-size:0.80rem;color:var(--cream-3);
+}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--bg);
+  border-top:1px solid var(--border-white);
+  padding:30px 6%;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:14px;
+}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.02rem;color:var(--cream);}
+.footer-logo span{color:var(--gold);}
+.footer-copy{font-size:0.78rem;color:var(--cream-3);}
+.footer-wa{font-size:0.84rem;color:var(--wa);text-decoration:none;transition:opacity 0.2s;}
+.footer-wa:hover{opacity:0.8;}
+
+/* ─── WA SVG ─── */
+.wa-svg{display:inline-block;vertical-align:middle;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .svc{grid-template-columns:1fr;}
+  .svc-right{flex-direction:row;align-items:center;padding-top:0;}
+  .svc-timeline{margin-top:0;margin-left:12px;}
+  .cred-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;gap:32px;}
+  .steps::before{display:none;}
+  .step{padding-right:0;}
+  nav .nav-links{display:none;}
+}
+@media(max-width:600px){
+  section{padding:60px 5%;}
+  .hero{padding:70px 5% 60px;}
+  .stats-bar{padding:32px 5%;}
+  .svc{padding:24px 20px;}
+  .cred-cards{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ─────── NAV ─────── -->
+<nav>
+  <div class="nav-logo">Samson<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#problems">The Problem</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+  <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%20found%20your%20website%20and%20I%27d%20like%20to%20discuss%20a%20project." class="nav-cta" target="_blank">
+    <svg class="wa-svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a3.178 3.178 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.525 5.849L0 24l6.335-1.663A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.8-.525-5.386-1.438l-.386-.228-3.997 1.049 1.068-3.9-.253-.4A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Chat on WhatsApp
+  </a>
+</nav>
+
+<!-- ─────── HERO ─────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="live-dot"></span>
+      Available for projects · Nairobi, Kenya
+    </div>
+    <h1>
+      I build <em>systems</em> that make<br>
+      Kenyan businesses more money.
+    </h1>
+    <p class="hero-sub">
+      Not websites. Not apps. Business systems — that find you customers, follow up automatically, and keep operations running while you sleep.
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%20want%20to%20discuss%20a%20project%20for%20my%20business." class="btn-wa" target="_blank">
+        <svg class="wa-svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a3.178 3.178 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.525 5.849L0 24l6.335-1.663A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.8-.525-5.386-1.438l-.386-.228-3.997 1.049 1.068-3.9-.253-.4A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Start a Project
+      </a>
+      <a href="#services" class="btn-outline">See What I Build &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── STATS ─────── -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat">
+      <span class="stat-num">6+</span>
+      <span class="stat-label">Years Building Systems</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">5</span>
+      <span class="stat-label">Live Products Built</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Countries Worked In</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Degrees &amp; HubSpot Certified</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─────── PAIN POINTS ─────── -->
+<section class="pain" id="problems">
+  <div class="container">
+    <div class="pain-intro">
+      <div class="section-label">The Real Problem</div>
+      <h2>What's silently costing your business money every single day?</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <span class="pain-icon">🔍</span>
+        <div class="pain-title">Customers can't find you online</div>
+        <div class="pain-desc">Your competitor shows up first on Google. You don't. They're collecting your customers — every single day — and you don't even see it happening.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">📱</span>
+        <div class="pain-title">Leads go cold on WhatsApp</div>
+        <div class="pain-desc">People message you, you're busy, you forget to reply. They go elsewhere. This happens hundreds of times a year — and each one is money you'll never see.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">💸</span>
+        <div class="pain-title">You pay for ads but don't follow up</div>
+        <div class="pain-desc">You spend on Google Ads, Meta Ads, or referrals. Leads come in. Nobody follows up consistently. That's not a marketing problem — that's a systems problem.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">⚙️</span>
+        <div class="pain-title">Operations running on spreadsheets</div>
+        <div class="pain-desc">WhatsApp groups. Notebooks. Excel files nobody updates. Work that should take 10 minutes takes 3 hours. Every day. It scales your stress, not your revenue.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── SERVICES ─────── -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label">What I Build</div>
+      <h2>Systems built around problems Kenyan businesses are already paying to solve</h2>
+      <p>Every service below is structured around a real business problem — not a technology. If you recognise your problem, click the WhatsApp button and we'll talk.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- SERVICE 01 -->
+      <div class="svc featured">
+        <div class="svc-watermark">01</div>
+        <div class="svc-body">
+          <div class="svc-badge">🔥 Highest Demand</div>
+          <div class="svc-problem">The problem &mdash; invisible to customers searching online</div>
+          <div class="svc-name">Get Found on Google Before Your Competitor Does</div>
+          <div class="svc-desc">When someone in Nairobi searches for what you sell, your business should be the first result they see. I set up and fully optimise your Google Business Profile, fix your website's on-page SEO, identify the keywords your customers actually use, and run monthly reporting so you can track growth.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Google Business Profile</span>
+            <span class="svc-tag">On-Page SEO</span>
+            <span class="svc-tag">Keyword Strategy</span>
+            <span class="svc-tag">Competitor Analysis</span>
+            <span class="svc-tag">Monthly Reporting</span>
+          </div>
+          <hr class="svc-divider">
+          <span class="svc-price-label">Starting from</span>
+          <span class="svc-price-amount">KES 25,000</span>
+          <span class="svc-price-period">&nbsp;setup &nbsp;+&nbsp; KES 12,000 / month</span>
+        </div>
+        <div class="svc-right">
+          <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%27m%20interested%20in%20the%20SEO%20%26%20Google%20visibility%20package.%20Can%20we%20talk%3F" class="svc-cta" target="_blank">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a3.178 3.178 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.525 5.849L0 24l6.335-1.663A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.8-.525-5.386-1.438l-.386-.228-3.997 1.049 1.068-3.9-.253-.4A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Order Now
+          </a>
+          <div class="svc-timeline">Setup in<br><strong style="color:var(--cream);">5–7 days</strong></div>
+        </div>
+      </div>
+
+      <!-- SERVICE 02 -->
+      <div class="svc">
+        <div class="svc-watermark">02</div>
+        <div class="svc-body">
+          <div class="svc-problem">The problem &mdash; losing leads because you can't be online 24/7</div>
+          <div class="svc-name">Turn Your WhatsApp Into a 24/7 Automated Sales Rep</div>
+          <div class="svc-desc">WhatsApp is where your customers already are. I build an automated system that responds to enquiries instantly, captures lead information, qualifies prospects based on your criteria, and books appointments — even at 2am when you're sleeping. No more missed conversations.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Instant Auto-Responses</span>
+            <span class="svc-tag">Lead Capture Flows</span>
+            <span class="svc-tag">Appointment Booking</span>
+            <span class="svc-tag">Follow-Up Sequences</span>
+            <span class="svc-tag">Bilingual (EN/SW)</span>
+          </div>
+          <hr class="svc-divider">
+          <span class="svc-price-label">One-time setup</span>
+          <span class="svc-price-amount">KES 45,000</span>
+        </div>
+        <div class="svc-right">
+          <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%20want%20to%20automate%20my%20WhatsApp%20business%20inquiries.%20Can%20we%20discuss%3F" class="svc-cta" target="_blank">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a3.178 3.178 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.525 5.849L0 24l6.335-1.663A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.8-.525-5.386-1.438l-.386-.228-3.997 1.049 1.068-3.9-.253-.4A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Order Now
+          </a>
+          <div class="svc-timeline">Setup in<br><strong style="color:var(--cream);">7–10 days</strong></div>
+        </div>
+      </div>
+
+      <!-- SERVICE 03 -->
+      <div class="svc">
+        <div class="svc-watermark">03</div>
+        <div class="svc-body">
+          <div class="svc-problem">The problem &mdash; leads fall through the cracks after you spend to get them</div>
+          <div class="svc-name">Stop Losing the Leads You Already Paid For</div>
+          <div class="svc-desc">You spend money on ads, referrals, or events. Leads come in. Then nothing — no follow-up system, no pipeline, no tracking. I build a full CRM and automated follow-up sequence so every lead gets pursued consistently until they buy or genuinely opt out.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">CRM Setup &amp; Config</span>
+            <span class="svc-tag">Lead Pipeline Design</span>
+            <span class="svc-tag">Automated Follow-Ups</span>
+            <span class="svc-tag">Customer Segmentation</span>
+            <span class="svc-tag">Reporting Dashboard</span>
+          </div>
+          <hr class="svc-divider">
+          <span class="svc-price-label">Starting from</span>
+          <span class="svc-price-amount">KES 40,000</span>
+          <span class="svc-price-period">&nbsp;setup &nbsp;+&nbsp; KES 8,000 / month</span>
+        </div>
+        <div class="svc-right">
+          <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%20need%20a%20CRM%20and%20automated%20follow-up%20system%20for%20my%20business.%20Can%20we%20talk%3F" class="svc-cta" target="_blank">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a3.178 3.178 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.525 5.849L0 24l6.335-1.663A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.8-.525-5.386-1.438l-.386-.228-3.997 1.049 1.068-3.9-.253-.4A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Order Now
+          </a>
+          <div class="svc-timeline">Setup in<br><strong style="color:var(--cream);">10–14 days</strong></div>
+        </div>
+      </div>
+
+      <!-- SERVICE 04 -->
+      <div class="svc">
+        <div class="svc-watermark">04</div>
+        <div class="svc-body">
+          <div class="svc-problem">The problem &mdash; great idea, no technical team to build it</div>
+          <div class="svc-name">Build Your Business App or Platform</div>
+          <div class="svc-desc">You have a product idea — a marketplace, booking platform, management system, or SaaS tool — but no technical co-founder or affordable team. I design and build it end-to-end, from architecture to live deployment, as lean as possible so you reach market fast without burning capital.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Web Applications</span>
+            <span class="svc-tag">Booking Platforms</span>
+            <span class="svc-tag">Marketplace Builds</span>
+            <span class="svc-tag">SaaS MVPs</span>
+            <span class="svc-tag">M-Pesa Integration</span>
+            <span class="svc-tag">API Design</span>
+          </div>
+          <hr class="svc-divider">
+          <span class="svc-price-label">Starting from</span>
+          <span class="svc-price-amount">KES 85,000</span>
+          <span class="svc-price-period">&nbsp;(based on scope)</span>
+        </div>
+        <div class="svc-right">
+          <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%20have%20a%20business%20app%20idea%20I%27d%20like%20to%20discuss%20building.%20Can%20we%20talk%3F" class="svc-cta" target="_blank">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a3.178 3.178 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.525 5.849L0 24l6.335-1.663A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.8-.525-5.386-1.438l-.386-.228-3.997 1.049 1.068-3.9-.253-.4A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Discuss Project
+          </a>
+          <div class="svc-timeline">Timeline<br><strong style="color:var(--cream);">by scope</strong></div>
+        </div>
+      </div>
+
+      <!-- SERVICE 05 -->
+      <div class="svc featured">
+        <div class="svc-watermark">05</div>
+        <div class="svc-body">
+          <div class="svc-badge">⭐ Full Package</div>
+          <div class="svc-problem">The problem &mdash; the whole business is running manually and bleeding money</div>
+          <div class="svc-name">Put Your Entire Business on Digital Autopilot</div>
+          <div class="svc-desc">This is the complete package. I audit every broken or manual process in your business and replace it with an integrated, automated system — from the first lead that finds you online, all the way through to customer follow-up, team workflows, and operations reporting. You run the vision. The system runs the rest.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Full CRM + Pipeline</span>
+            <span class="svc-tag">Marketing Automation</span>
+            <span class="svc-tag">WhatsApp Flows</span>
+            <span class="svc-tag">Operations Dashboard</span>
+            <span class="svc-tag">Team Workflow Design</span>
+            <span class="svc-tag">SEO + Visibility</span>
+            <span class="svc-tag">Custom Reporting</span>
+          </div>
+          <hr class="svc-divider">
+          <span class="svc-price-label">Starting from</span>
+          <span class="svc-price-amount">KES 150,000</span>
+          <span class="svc-price-period">&nbsp;(custom-scoped)</span>
+        </div>
+        <div class="svc-right">
+          <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%27m%20interested%20in%20the%20full%20Business%20Autopilot%20package.%20I%27d%20like%20to%20book%20a%20discovery%20call." class="svc-cta" target="_blank">
+            <svg class="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a3.178 3.178 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.525 5.849L0 24l6.335-1.663A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.8-.525-5.386-1.438l-.386-.228-3.997 1.049 1.068-3.9-.253-.4A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Book a Discovery Call
+          </a>
+          <div class="svc-timeline">Timeline<br><strong style="color:var(--cream);">3–6 weeks</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────── QUICK WINS ─────── -->
+<section class="quick">
+  <div class="container">
+    <div class="quick-intro">
+      <div class="section-label">Smaller Budget? Start Here</div>
+      <h2>Quick-win standalone services</h2>
+      <p>Fast, affordable, high-impact. Done in days — not weeks. Perfect if you want to test before committing to a larger system.</p>
+    </div>
+    <div class="quick-grid">
+      <div class="quick-card">
+        <div class="quick-name">Google Business Profile Setup</div>
+        <div class="quick-desc">Get your business on the map, verified, and optimised to rank locally in your area.</div>
+        <div class="quick-price">KES 8,500</div>
+        <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%27d%20like%20the%20Google%20Business%20Profile%20setup%20service." class="quick-cta" target="_blank">Order &rarr;</a>
+      </div>
+      <div class="quick-card">
+        <div class="quick-name">Business Landing Page</div>
+        <div class="quick-desc">A professional, mobile-optimised single page that converts visitors into enquiries.</div>
+        <div class="quick-price">KES 18,000</div>
+        <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%27d%20like%20a%20business%20landing%20page%20built." class="quick-cta" target="_blank">Order &rarr;</a>
+      </div>
+      <div class="quick-card">
+        <div class="quick-name">Email Follow-Up Automation</div>
+        <div class="quick-desc">3-email welcome and nurture sequence for new leads. Set it up once, runs forever.</div>
+        <div class="quick-price">KES 15,000</div>
+        <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%27d%20like%20an%20email%20automation%20sequence%20set%20up." class="quick-cta" target="_blank">Order &rarr;</a>
+      </div>
+      <div class="quick-card">
+        <div class="quick-name">Business Process Audit</div>
+        <div class="quick-desc">I map what's broken in your operations and hand you a prioritised fix plan — in writing.</div>
+        <div class="quick-price">KES 12,000</div>
+        <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%27d%20like%20a%20business%20process%20audit%20done." class="quick-cta" target="_blank">Order &rarr;</a>
+      </div>
+      <div class="quick-card">
+        <div class="quick-name">WhatsApp Business Setup</div>
+        <div class="quick-desc">Product catalogue, auto-reply messages, and away messages configured properly.</div>
+        <div class="quick-price">KES 6,500</div>
+        <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%27d%20like%20my%20WhatsApp%20Business%20set%20up%20properly." class="quick-cta" target="_blank">Order &rarr;</a>
+      </div>
+      <div class="quick-card">
+        <div class="quick-name">Social Media Content Calendar</div>
+        <div class="quick-desc">30-day content calendar with captions, hashtags, and posting schedule — ready to use.</div>
+        <div class="quick-price">KES 10,000</div>
+        <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%27d%20like%20a%2030-day%20social%20media%20content%20calendar." class="quick-cta" target="_blank">Order &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── CREDIBILITY ─────── -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Why Work With Me</div>
+    <div class="cred-grid">
+      <div class="cred-text">
+        <h2>I've built real systems. Not just mockups and decks.</h2>
+        <p>I'm a Senior Software Engineer with 6+ years building end-to-end digital systems across Kenya, the US, and beyond — from live customer-facing platforms to fully automated business workflows.</p>
+        <p>What makes this different is that I think in systems, not deliverables. Most agencies hand you a website and disappear. I connect every layer — your marketing, your customer pipeline, your operations — into one integrated machine that makes money while you focus on the business.</p>
+        <div class="cred-items">
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <div>
+              <div class="cred-item-strong">Mechanic Mtaani — Live Kenyan Platform</div>
+              <div class="cred-item-text">Built a full automotive marketplace connecting drivers, mechanics & spare shops across Kenya, powered by AI diagnostics via WhatsApp.</div>
+            </div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <div>
+              <div class="cred-item-strong">US Internships — Real Automation Work</div>
+              <div class="cred-item-text">Built HubSpot workflows, email sequences, ICP frameworks, and marketing systems for Freemodel, Spacewell, and Diced Digital — all in production.</div>
+            </div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-dot"></div>
+            <div>
+              <div class="cred-item-strong">HubSpot Certified — SEO &amp; Inbound Marketing</div>
+              <div class="cred-item-text">Applied to real campaigns with measurable outcomes — not theory. Also holds a BSc. in Information Assurance &amp; CIS (GPA 3.8) and a BBIT.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cred-cards">
+        <div class="cred-card">
+          <div class="cred-card-title">Mechanic Mtaani</div>
+          <div class="cred-card-sub">Live Kenyan platform · Founder &amp; Lead Engineer</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-card-title">Freemodel (USA)</div>
+          <div class="cred-card-sub">HubSpot email optimisation · Internship</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-card-title">Spacewell</div>
+          <div class="cred-card-sub">ICP development &amp; marketing workflows · Internship</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-card-title">Davenport University</div>
+          <div class="cred-card-sub">BSc. Information Assurance &amp; CIS · GPA 3.8</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-card-title">Auto Finance Pro</div>
+          <div class="cred-card-sub">SaaS platform with telematics &amp; insurance module · In-build</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-card-title">NNUS Sacco System</div>
+          <div class="cred-card-sub">Transport booking system for Blueline Sacco · Built</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── HOW IT WORKS ─────── -->
+<section class="how" id="process">
+  <div class="container">
+    <div class="how-intro">
+      <div class="section-label">The Process</div>
+      <h2>From first WhatsApp message to live system — 3 steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-name">Discovery Conversation</div>
+        <div class="step-desc">You message me on WhatsApp. We talk about what's broken, what you want to build, or what's costing you money. I give you a clear scope, exact price, and realistic timeline — no vague proposals.</div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-name">Build &amp; Deliver</div>
+        <div class="step-desc">I build your system and keep you updated throughout the process. No disappearing. No endless revision loops. Deliverables are broken into clear milestones so you always know where things stand.</div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div class="step-name">Handover &amp; Support</div>
+        <div class="step-desc">You receive full ownership — logins, documentation, and a live walkthrough. I stay available post-handover so nothing falls flat when it matters most.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── FINAL CTA ─────── -->
+<section class="final-cta">
+  <div class="container">
+    <div class="section-label">Ready to Start?</div>
+    <h2>One conversation can<br><em style="color:var(--gold);font-style:italic;">change how your business runs</em></h2>
+    <p>No lengthy forms. No cold sales calls. Just a direct WhatsApp conversation about what you need and what it takes to build it. Most projects kick off within 48 hours.</p>
+    <a href="https://wa.me/254701790187?text=Hi%20Samson%2C%20I%20found%20your%20website%20and%20I%27d%20like%20to%20discuss%20a%20project%20for%20my%20business.%20Can%20we%20talk%3F" class="final-wa" target="_blank">
+      <svg class="wa-svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a3.178 3.178 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.525 5.849L0 24l6.335-1.663A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.8-.525-5.386-1.438l-.386-.228-3.997 1.049 1.068-3.9-.253-.4A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Start on WhatsApp &nbsp;&mdash;&nbsp; +254 701 790 187
+    </a>
+    <div class="final-note">Typically responds within 2 hours &nbsp;·&nbsp; Mon–Sat, 8am–8pm EAT</div>
+  </div>
+</section>
+
+<!-- ─────── FOOTER ─────── -->
+<footer>
+  <div class="footer-logo">Samson C. Mbugua<span>.</span></div>
+  <div class="footer-copy">Business Systems Builder &nbsp;·&nbsp; Nairobi, Kenya &nbsp;·&nbsp; &copy; 2025 Samson Mbugua. All rights reserved.</div>
+  <a href="https://wa.me/254701790187" class="footer-wa" target="_blank">+254 701 790 187</a>
+</footer>
+
+</body>
+</html>
